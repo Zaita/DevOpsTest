@@ -10,7 +10,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: dpkg -l g++
+- script: |
+  sudo apt-get update
+  dpkg -l g++
   displayName: 'Checking G++ Version'
 
 - script: echo Hello, world!
