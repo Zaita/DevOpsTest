@@ -12,7 +12,8 @@ pool:
 steps:
 
 - script: |
-    g++-7 -v    
+    g++-7 -v 
+    gfortran-7 -v   
   displayName: 'Checking G++'  
 
 - script: echo Hello, world!
