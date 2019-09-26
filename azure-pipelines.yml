@@ -10,19 +10,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: |
-    sudo apt-get update
-  displayName: 'Updating apt-get'
 
 - script: |
-    sudo apt-get -y install g++
-    g++ -v
-  displayName: 'Installing G++'  
-
-- script: |
-    sudo apt-get -y update g++
-    g++ -v
-  displayName: 'Updating G++'
+    g++-7 -v    
+  displayName: 'Checking G++'  
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
