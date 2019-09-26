@@ -14,16 +14,27 @@ steps:
 - script: |
     sudo apt-get update
     sudo apt-get -y install gfortran-7
-  displayName: 'Installing Fortran' 
+  displayName: 'Installing gfortran-7' 
 
 - script: |
-    g++-7 -v 
-    gfortran-7 -v       
+    sudo update-alternatives --remove-all gcc 
+    sudo update-alternatives --remove-all g++   
+    sudo update-alternatives --remove-all gfortran   
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7
+    sudo update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-7
+  displayName: 'Changing gcc, g++ and gfotran aliases'  
+  
+- script: |
+    gcc -v
+    g++ -v 
+    gfortran -v       
   displayName: 'Checking G++'  
   continueOnError: true
 
 - script: |
-    alias g++=g++-7
+    export CC=gcc-7
+    export CXX=g++-7
     g++ -v 
   displayName: 'Checking G++'  
 
