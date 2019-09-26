@@ -12,8 +12,17 @@ pool:
 steps:
 - script: |
     sudo apt-get update
-    dpkg -l g++
-  displayName: 'Checking G++ Version'
+  displayName: 'Updating apt-get'
+
+- script: |
+    sudo apt-get -y install g++
+    g++ -v
+  displayName: 'Installing G++'  
+
+- script: |
+    sudo apt-get -y update g++
+    g++ -v
+  displayName: 'Updating G++'
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
