@@ -12,6 +12,11 @@ pool:
 steps:
 
 - script: |
+    sudo apt-get update
+    sudo apt-get -y install gfortran-7
+  displayName: 'Installing Fortran' 
+
+- script: |
     g++-7 -v 
     gfortran-7 -v   
   displayName: 'Checking G++'  
