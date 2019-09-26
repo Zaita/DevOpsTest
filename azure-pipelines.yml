@@ -11,8 +11,8 @@ pool:
 
 steps:
 - script: |
-  sudo apt-get update
-  dpkg -l g++
+    sudo apt-get update
+    dpkg -l g++
   displayName: 'Checking G++ Version'
 
 - script: echo Hello, world!
