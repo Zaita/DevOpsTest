@@ -1,0 +1,47 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- script: |
+    sudo apt-get update
+    sudo apt-get -y install gfortran-7
+  displayName: 'Installing gfortran-7' 
+
+- script: |
+    sudo update-alternatives --remove-all gcc
+    sudo update-alternatives --remove-all g++
+    sudo update-alternatives --remove-all gfortran
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 10
+    sudo update-alternatives --install /usr/bin/gfortran gfortran /usr/bin/gfortran-7 10
+  displayName: 'Changing gcc, g++ and gfotran aliases'  
+  
+- script: |
+    gcc -v
+    g++ -v 
+    gfortran -v       
+  displayName: 'Checking G++'  
+  continueOnError: true
+
+- script: |
+    export CC=gcc-7
+    export CXX=g++-7
+    g++ -v 
+  displayName: 'Checking G++'  
+
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
