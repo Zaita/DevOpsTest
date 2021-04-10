@@ -20,6 +20,9 @@ steps:
   displayName: 'Build Check'
 
 - script: |
+    g++ -v
+    gfortran -v
+    cmake --version
     g++ main.cpp -o main.exe
     main.exe
   displayName: 'Did it work?'
